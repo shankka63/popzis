@@ -2,9 +2,7 @@
 chrome.runtime.onInstalled.addListener(function() {
   chrome.declarativeContent.onPageChanged.removeRules(undefined, function() {
     chrome.declarativeContent.onPageChanged.addRules([{
-      conditions: availablesSites.map(site=>{
-        return new chrome.declarativeContent.PageStateMatcher()
-      }),
+      conditions: [new chrome.declarativeContent.PageStateMatcher()],
       actions: [new chrome.declarativeContent.ShowPageAction()]
     }]);
   });

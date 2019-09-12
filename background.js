@@ -1,10 +1,4 @@
 
-
-const availablesSites = ['voiranime.com','www.youtube.com','www.twitch.tv'];
-
-
-
-
 chrome.runtime.onInstalled.addListener(function() {
   chrome.declarativeContent.onPageChanged.removeRules(undefined, function() {
     chrome.declarativeContent.onPageChanged.addRules([{

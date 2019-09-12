@@ -5,6 +5,10 @@ function makeItPop() {
     ytStrategy();
     return;
   }
+  if(adress.includes("dailymotion.com")){
+    dailymotionStrategy();
+    return;
+  }
   if(adress.includes("twitch.tv")){
     twitchStrategy();
     return;
@@ -18,13 +22,11 @@ function defaultStrategy(){
   let frames = document.getElementsByTagName("IFRAME");
 
   let filtered=[];
-  let j=0;
   for(let i=0;i<frames.length;i++){
     let it = frames[i];
     if(!(it.src === "" || it.src.includes("facebook") || it.src.endsWith('.html'))){
 
-      filtered[j]=it;
-      j++;
+      filtered.push(it);
     }
   }
 
@@ -41,11 +43,23 @@ function defaultStrategy(){
   })
 }
 
+function dailymotionStrategy(){
+
+  let url = /video\/(.*)/.exec(location.href)[1];
+
+  let clone = document.createElement('iframe');
+  clone.src="https://www.dailymotion.com/embed/video/"+url;
+  clone.height="315";
+  clone.width="560";
+  clone.id=id='frame';
+  let popup = openPopzis(560,315);
+  popup.document.getElementById('main').appendChild(clone);
+
+}
+
 function ytStrategy(){
 
-
   let url = /watch\?v=(.*)/.exec(location.href)[1];
-
 
   let clone = document.createElement('iframe');
   clone.src="https://www.youtube.com/embed/"+url;

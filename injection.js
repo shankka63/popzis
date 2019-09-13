@@ -29,19 +29,11 @@ function defaultStrategy(){
       filtered.push(it);
     }
   }
-
-  let popup = openPopzis(filtered[0].width,filtered[0].height,filtered[0].src);
-
-/*
+  
   filtered.forEach(it=>{
-    let clone = document.createElement('iframe');
-    clone.src=it.src;
-    clone.height=it.height-20;
-    clone.width=it.width-20;
-    clone.id=id='frame';
-    popup.document.getElementById('main').appendChild(clone);
+      openPopzis(it.width,it.height,it.src);
   })
-  */
+
 }
 
 function dailymotionStrategy(){
@@ -49,8 +41,6 @@ function dailymotionStrategy(){
   let url = /video\/(.*)/.exec(location.href)[1];
   url="https://www.dailymotion.com/embed/video/"+url;
   let popup = openPopzis(560,315,url);
-
-
 
 }
 
@@ -84,7 +74,6 @@ function openPopzis(width,height,src){
   popup.document.getElementById('main').appendChild(clone);
   popup.document.getElementById("frame").style["border-width"]=0;
   popup.document.getElementsByTagName('BODY')[0].style.margin=0;
-  //popup.document.write("<script>document.getElementsByTagName('BODY')[0].style.margin=0;</script>")
   popup.stop();
 
   return popup;

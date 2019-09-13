@@ -24,12 +24,11 @@ function defaultStrategy(){
   let filtered=[];
   for(let i=0;i<frames.length;i++){
     let it = frames[i];
-    if(!(it.src === "" || it.src.includes("facebook") || it.src.endsWith('.html'))){
-
+    if(!(it.src === "" || it.src.includes("facebook") || it.src.endsWith('.html') || it.src.includes('captcha'))){
       filtered.push(it);
     }
   }
-  
+
   filtered.forEach(it=>{
       openPopzis(it.width,it.height,it.src);
   })

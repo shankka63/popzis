@@ -9,7 +9,7 @@ chrome.runtime.onInstalled.addListener(function() {
 
   //Ajout du sous menu Popzis sur le click droit
   //const contexts = ["page","selection","link","editable","image","video","audio"];
-  const contexts = ["page","link","image","video","audio"];
+  const contexts = ["page","link","video","audio"];
   for (var i = 0; i < contexts.length; i++) {
     var context = contexts[i];
     var title = "Open in a Popzis";

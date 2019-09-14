@@ -47,7 +47,7 @@ function dailymotionStrategy(adress){
 
 function ytStrategy(adress){
 
-  let url = /watch\?v=(.*)/.exec(adress)[1];
+  let url = /watch\?v=([a-z A-Z 0-9 \- _ ]*)(&=[0-9]+s)*/.exec(adress)[1];
   url="https://www.youtube.com/embed/"+url;
   openPopzis(560,315,url);
 

@@ -14,6 +14,11 @@ function makeItPop(adress = location.href) {
     return;
   }
 
+  if(adress.includes("japscan.co")){
+    japscanStrategy(adress);
+    return;
+  }
+
   defaultStrategy();
 
 }
@@ -43,6 +48,37 @@ function dailymotionStrategy(adress){
   url="https://www.dailymotion.com/embed/video/"+url;
   let popup = openPopzis(560,315,url);
 
+}
+
+function japscanStrategy(adress){
+  let opts = document.getElementById("pages").options;
+  if(!opts)return;
+
+  let imgs = [];
+  for(let i = 0 ; i<opts.length ; i++){
+    imgs.push(opts[i]["dataset"].img);
+  }
+
+  let params = /(\/{2}).*\/(.*)\/(.*)\//.exec(adress);
+
+  let url = params[2].split("-");
+  url = url.map(it=>{
+    return it[0].toUpperCase()+it.slice(1);
+  }).join('-');
+
+
+  let popup = window.open("", "Popzis"+Math.floor(Math.random() * Math.floor(9999)), "width=500 height=900");
+  popup.document.write("<div id='main'></div>");
+
+  imgs.forEach(it=>{
+
+    let img = document.createElement('img');
+    img.src = "https://c.japscan.co/lel/"+url+"/"+params[3]+"/"+it;
+    popup.document.getElementById('main').appendChild(img);
+console.log(it);
+  })
+
+  //https://c.japscan.co/lel/
 }
 
 function ytStrategy(adress){
